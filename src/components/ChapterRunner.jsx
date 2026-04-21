@@ -116,9 +116,10 @@ const ChapterRunner = ({ scenes, bgm, onComplete, onCollect }) => {
       ))}
       {scenes.flatMap((scene, si) =>
         (scene.btn ?? []).map((b, bi) => {
+          const hoverGlow = b.collect || b.glow;
           const glow =
             si === index &&
-            b.collect &&
+            hoverGlow &&
             hoveredBtn === bi &&
             !collectedBtns.has(bi);
           return (
@@ -128,7 +129,7 @@ const ChapterRunner = ({ scenes, bgm, onComplete, onCollect }) => {
               alt=""
               className={`absolute inset-0 w-full h-full object-contain pointer-events-none ${
                 b.phase || b.phaseOut ? "transition-opacity duration-1000" : ""
-              } ${b.collect ? "transition-[filter] duration-200 ease-out" : ""} ${
+              } ${hoverGlow ? "transition-[filter] duration-200 ease-out" : ""} ${
                 si === index && visibleBtns.has(bi) && !collectedBtns.has(bi)
                   ? "opacity-100"
                   : "opacity-0"
@@ -150,8 +151,12 @@ const ChapterRunner = ({ scenes, bgm, onComplete, onCollect }) => {
           <div
             key={`hit-${index}-${bi}`}
             onClick={() => handleBtnClick(b, bi)}
-            onMouseEnter={b.collect ? () => setHoveredBtn(bi) : undefined}
-            onMouseLeave={b.collect ? () => setHoveredBtn(null) : undefined}
+            onMouseEnter={
+              b.collect || b.glow ? () => setHoveredBtn(bi) : undefined
+            }
+            onMouseLeave={
+              b.collect || b.glow ? () => setHoveredBtn(null) : undefined
+            }
             style={b.hitbox}
             className="absolute cursor-pointer"
           />

@@ -11,14 +11,14 @@ import Chapter7 from "./components/Chapter7";
 import Chapter8 from "./components/Chapter8";
 
 const quests = [
-  { id: "key", label: "เควส1" },
-  { id: "letter", label: "เควส2" },
-  { id: "wireCutter", label: "เควส3" },
-  { id: "cassette", label: "เควส4" },
+  { id: "key", label: "กุญแจ" },
+  { id: "letter", label: "จดหมาย" },
+  { id: "wireCutter", label: "คีมตัดเหล็ก" },
+  { id: "cassette", label: "เทปเสียง" },
 ];
 
 const App = () => {
-  const [stage, setStage] = useState("chapter5");
+  const [stage, setStage] = useState("start");
   const [inventory, setInventory] = useState([]);
   const [completedQuests, setCompletedQuests] = useState(new Set());
 
@@ -81,7 +81,7 @@ const App = () => {
       {stage === "chapter8" && (
         <Chapter8 onComplete={handleGameEnd} onCollect={handleCollect} />
       )}
-      {stage !== "start" && (
+      {(stage === "chapter3" || stage === "chapter4") && (
         <Inventory
           items={inventory}
           quests={quests}

@@ -29,6 +29,7 @@ export const scenes = [
         src: bg1Balloon,
         delay: 0,
         hitbox: { top: "35%", left: "65%", width: "30%", height: "60%" },
+        glow: true,
       },
     ],
   },

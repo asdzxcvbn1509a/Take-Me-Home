@@ -25,6 +25,7 @@ export const scenes = [
         src: bg1Doll,
         delay: 0,
         hitbox: { top: "30%", left: "10%", width: "29%", height: "60%" },
+        glow: true,
       },
       {
         src: bg1Balloon,

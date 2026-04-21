@@ -70,6 +70,7 @@ export const scenes = [
         delay: 0,
         hitbox: { top: "70%", left: "45%", width: "9%", height: "16%" },
         sound: cutSfx,
+        glow: true,
       },
     ],
     messages: [
